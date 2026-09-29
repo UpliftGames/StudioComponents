@@ -3,6 +3,7 @@ local React = require("@pkg/@jsdotlua/react")
 local CommonProps = require("../../CommonProps")
 local Constants = require("../../Constants")
 
+local StyleGuide = require("../../StyleGuide")
 local getTextSize = require("../../getTextSize")
 local useTheme = require("../../Hooks/useTheme")
 
@@ -44,15 +45,15 @@ local function BaseTextInput(props: BaseTextInputProps)
 	local predictNextCursor = React.useRef(-1) :: { current: number }
 	local lastCursor = React.useRef(-1) :: { current: number }
 
-	local mainModifier = Enum.StudioStyleGuideModifier.Default
-	local borderModifier = Enum.StudioStyleGuideModifier.Default
+	local mainModifier = StyleGuide.Modifier.Default
+	local borderModifier = StyleGuide.Modifier.Default
 	if disabled then
-		mainModifier = Enum.StudioStyleGuideModifier.Disabled
-		borderModifier = Enum.StudioStyleGuideModifier.Disabled
+		mainModifier = StyleGuide.Modifier.Disabled
+		borderModifier = StyleGuide.Modifier.Disabled
 	elseif focused then
-		borderModifier = Enum.StudioStyleGuideModifier.Selected
+		borderModifier = StyleGuide.Modifier.Selected
 	elseif hovered then
-		borderModifier = Enum.StudioStyleGuideModifier.Hover
+		borderModifier = StyleGuide.Modifier.Hover
 	end
 
 	local cursor, setCursor = React.useState(-1)
@@ -95,7 +96,7 @@ local function BaseTextInput(props: BaseTextInputProps)
 		Font = FONT,
 		Text = props.Text,
 		TextSize = TEXT_SIZE,
-		TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, mainModifier),
+		TextColor3 = theme:GetColor(StyleGuide.Color.MainText, mainModifier),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		TextTruncate = if focused then Enum.TextTruncate.None else Enum.TextTruncate.AtEnd,
 		[React.Event.InputBegan] = function(_, input: InputObject)
@@ -170,8 +171,8 @@ local function BaseTextInput(props: BaseTextInputProps)
 		Size = props.Size or UDim2.new(1, 0, 0, DEFAULT_HEIGHT),
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBackground, mainModifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBorder, borderModifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.InputFieldBackground, mainModifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.InputFieldBorder, borderModifier),
 		BorderMode = Enum.BorderMode.Inset,
 		[React.Change.AbsoluteSize] = function(rbx: Frame)
 			setContainerSize(rbx.AbsoluteSize - Vector2.new(rightPaddingExtra, 0))

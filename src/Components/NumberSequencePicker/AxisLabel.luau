@@ -1,6 +1,7 @@
 local React = require("@pkg/@jsdotlua/react")
 
 local Constants = require("../../Constants")
+local StyleGuide = require("../../StyleGuide")
 local useTheme = require("../../Hooks/useTheme")
 
 local function AxisLabel(props: {
@@ -20,7 +21,7 @@ local function AxisLabel(props: {
 		Text = tostring(props.Value),
 		Font = Constants.DefaultFont,
 		TextSize = Constants.DefaultTextSize,
-		TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.DimmedText),
+		TextColor3 = theme:GetColor(StyleGuide.Color.DimmedText),
 		TextTransparency = if props.Disabled then 0.5 else 0,
 		TextXAlignment = props.TextXAlignment,
 		ZIndex = -1,

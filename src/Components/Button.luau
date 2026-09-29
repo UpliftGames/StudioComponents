@@ -35,6 +35,7 @@
 local React = require("@pkg/@jsdotlua/react")
 
 local BaseButton = require("./Foundation/BaseButton")
+local StyleGuide = require("../StyleGuide")
 
 --[=[
 	@within Button
@@ -70,9 +71,9 @@ local BaseButton = require("./Foundation/BaseButton")
 
 local function Button(props: BaseButton.BaseButtonConsumerProps)
 	local merged = table.clone(props) :: BaseButton.BaseButtonProps
-	merged.BackgroundColorStyle = Enum.StudioStyleGuideColor.Button
-	merged.BorderColorStyle = Enum.StudioStyleGuideColor.ButtonBorder
-	merged.TextColorStyle = Enum.StudioStyleGuideColor.ButtonText
+	merged.BackgroundColorStyle = StyleGuide.Color.Button
+	merged.BorderColorStyle = StyleGuide.Color.ButtonBorder
+	merged.TextColorStyle = StyleGuide.Color.ButtonText
 
 	return React.createElement(BaseButton, merged)
 end

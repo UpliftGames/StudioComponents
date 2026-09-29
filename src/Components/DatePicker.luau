@@ -36,6 +36,7 @@ local BaseButton = require("./Foundation/BaseButton")
 local CommonProps = require("../CommonProps")
 local Constants = require("../Constants")
 
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 type TimeData = {
@@ -95,8 +96,8 @@ local function DayButton(props: {
 	return React.createElement(BaseButton, {
 		LayoutOrder = props.LayoutOrder,
 		Selected = props.Selected,
-		BackgroundColorStyle = Enum.StudioStyleGuideColor.RibbonButton,
-		BorderColorStyle = Enum.StudioStyleGuideColor.RibbonButton,
+		BackgroundColorStyle = StyleGuide.Color.RibbonButton,
+		BorderColorStyle = StyleGuide.Color.RibbonButton,
 		TextTransparency = props.Fade and 0.5 or 0,
 		Text = props.Text,
 		Disabled = props.Disabled,
@@ -115,16 +116,16 @@ local function MonthButton(props: {
 	local hovered, setHovered = React.useState(false)
 	local pressed, setPressed = React.useState(false)
 
-	local color = Enum.StudioStyleGuideColor.Titlebar
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local color = StyleGuide.Color.Titlebar
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	elseif pressed then
-		color = Enum.StudioStyleGuideColor.Button
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		color = StyleGuide.Color.Button
+		modifier = StyleGuide.Modifier.Pressed
 	elseif hovered then
-		color = Enum.StudioStyleGuideColor.Button
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		color = StyleGuide.Color.Button
+		modifier = StyleGuide.Modifier.Hover
 	end
 
 	return React.createElement("TextButton", {
@@ -162,7 +163,7 @@ local function MonthButton(props: {
 			Position = UDim2.fromOffset(5, 4),
 			BackgroundTransparency = 1,
 			Image = ARROWS_ASSET,
-			ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText),
+			ImageColor3 = theme:GetColor(StyleGuide.Color.MainText),
 			ImageRectSize = Vector2.new(5, 9),
 			ImageRectOffset = props.ImageRectOffset,
 			ImageTransparency = if props.Disabled then 0.7 else 0,
@@ -235,9 +236,9 @@ local function DatePicker(props: DatePickerProps)
 		daysAfter = 7
 	end
 
-	local colorModifier = Enum.StudioStyleGuideModifier.Default
+	local colorModifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		colorModifier = Enum.StudioStyleGuideModifier.Disabled
+		colorModifier = StyleGuide.Modifier.Disabled
 	end
 
 	local items: { React.ReactNode } = {}
@@ -248,7 +249,7 @@ local function DatePicker(props: DatePickerProps)
 			LayoutOrder = i,
 			Font = Constants.DefaultFont,
 			TextSize = Constants.DefaultTextSize,
-			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.TitlebarText, colorModifier),
+			TextColor3 = theme:GetColor(StyleGuide.Color.TitlebarText, colorModifier),
 			BackgroundTransparency = 1,
 		})
 		index += 1
@@ -319,17 +320,17 @@ local function DatePicker(props: DatePickerProps)
 	}, {
 		Main = React.createElement("Frame", {
 			Size = UDim2.fromScale(1, 1),
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
-			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground),
+			BorderColor3 = theme:GetColor(StyleGuide.Color.Border),
 		}, {
 			Header = React.createElement("TextLabel", {
 				Size = UDim2.new(1, 0, 0, TITLE_HEIGHT),
 				Text = displayTime:FormatUniversalTime("MMMM YYYY", LOCALE),
 				Font = Constants.DefaultFont,
 				TextSize = Constants.DefaultTextSize,
-				TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, colorModifier),
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Titlebar),
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+				TextColor3 = theme:GetColor(StyleGuide.Color.MainText, colorModifier),
+				BackgroundColor3 = theme:GetColor(StyleGuide.Color.Titlebar),
+				BorderColor3 = theme:GetColor(StyleGuide.Color.Border),
 			}, {
 				PrevMonth = React.createElement(MonthButton, {
 					Disabled = props.Disabled,

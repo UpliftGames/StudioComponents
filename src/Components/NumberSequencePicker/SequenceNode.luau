@@ -5,6 +5,7 @@ local useMouseIcon = require("../../Hooks/useMouseIcon")
 local useTheme = require("../../Hooks/useTheme")
 
 local PickerConstants = require("./Constants")
+local StyleGuide = require("../../StyleGuide")
 
 local CATCHER_SIZE = 15
 local ENVELOPE_GRAB_HEIGHT = PickerConstants.EnvelopeHandleHeight
@@ -96,14 +97,14 @@ local function EnvelopeHandle(props: {
 			Position = UDim2.fromScale(0.5, if props.Top then 0 else 1),
 			Size = UDim2.fromOffset(if drag.isActive() or hovered then 3 else 1, ENVELOPE_GRAB_HEIGHT + 2),
 			BorderSizePixel = 0,
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainText),
 		}, {
 			Bar = React.createElement("Frame", {
 				AnchorPoint = Vector2.new(0.5, if props.Top then 1 else 0),
 				Position = UDim2.fromScale(0.5, if props.Top then 1 else 0),
 				Size = UDim2.fromOffset(9, if drag.isActive() or hovered then 3 else 1),
 				BorderSizePixel = 0,
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText),
+				BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainText),
 			}),
 		}),
 	})
@@ -171,10 +172,10 @@ local function SequenceNode(props: {
 	end, { props.Disabled })
 
 	local envelopeTransparency = ENVELOPE_TRANSPARENCY
-	local mainModifier = Enum.StudioStyleGuideModifier.Default
+	local mainModifier = StyleGuide.Modifier.Default
 	if props.Disabled then
 		envelopeTransparency = 1 - 0.5 * (1 - envelopeTransparency)
-		mainModifier = Enum.StudioStyleGuideModifier.Disabled
+		mainModifier = StyleGuide.Modifier.Disabled
 	end
 
 	return React.createElement("Frame", {
@@ -230,14 +231,14 @@ local function SequenceNode(props: {
 				Position = UDim2.fromScale(0.5, 0.5),
 				Size = UDim2.fromOffset(innerSize, innerSize),
 				BackgroundColor3 = if props.Active
-					then theme:GetColor(Enum.StudioStyleGuideColor.MainBackground, mainModifier)
-					else theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBackground, mainModifier),
+					then theme:GetColor(StyleGuide.Color.MainBackground, mainModifier)
+					else theme:GetColor(StyleGuide.Color.InputFieldBackground, mainModifier),
 				ZIndex = 2,
 			}, {
 				Stroke = React.createElement("UIStroke", {
 					Color = if props.Active
-						then theme:GetColor(Enum.StudioStyleGuideColor.MainText, mainModifier)
-						else theme:GetColor(Enum.StudioStyleGuideColor.DimmedText, mainModifier),
+						then theme:GetColor(StyleGuide.Color.MainText, mainModifier)
+						else theme:GetColor(StyleGuide.Color.DimmedText, mainModifier),
 					Thickness = if nodeDrag.isActive() then 2 else 1,
 				}),
 			}),

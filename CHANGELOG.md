@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0-uplift.2
+
+-   Added `StyleGuide` (`StyleGuide.Color` / `StyleGuide.Modifier`), used in place of `Enum.StudioStyleGuideColor` / `Enum.StudioStyleGuideModifier`. Those enums don't exist outside Studio, so components previously threw on require in a live game
+
 ## 1.2.0-uplift.1
 
 -   Fork published as `upliftgames/studiocomponents-fork` on the Uplift internal wally index

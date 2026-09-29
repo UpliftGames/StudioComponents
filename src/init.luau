@@ -1,5 +1,6 @@
 return {
 	Constants = require("./Constants"),
+	StyleGuide = require("./StyleGuide"),
 
 	Background = require("./Components/Background"),
 	Button = require("./Components/Button"),

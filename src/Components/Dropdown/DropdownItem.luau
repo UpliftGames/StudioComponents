@@ -6,6 +6,7 @@ local useTheme = require("../../Hooks/useTheme")
 local BaseIcon = require("../Foundation/BaseIcon")
 
 local DropdownTypes = require("./Types")
+local StyleGuide = require("../../StyleGuide")
 
 type DropdownItemProps = {
 	Id: string,
@@ -22,18 +23,18 @@ local function DropdownItem(props: DropdownItemProps)
 	local theme = useTheme()
 	local hovered, setHovered = React.useState(false)
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Selected then
-		modifier = Enum.StudioStyleGuideModifier.Selected
+		modifier = StyleGuide.Modifier.Selected
 	elseif hovered then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StyleGuide.Modifier.Hover
 	end
 
 	local iconNode: React.Node?
 	if props.Icon then
 		local iconColor = Color3.fromRGB(255, 255, 255)
 		if props.Icon.UseThemeColor then
-			iconColor = theme:GetColor(Enum.StudioStyleGuideColor.MainText)
+			iconColor = theme:GetColor(StyleGuide.Color.MainText)
 		elseif props.Icon.Color then
 			iconColor = props.Icon.Color
 		end
@@ -52,7 +53,7 @@ local function DropdownItem(props: DropdownItemProps)
 	return React.createElement("Frame", {
 		LayoutOrder = props.LayoutOrder,
 		Size = UDim2.new(1, 0, 0, props.Height),
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Item, modifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.Item, modifier),
 		BorderSizePixel = 0,
 	}, {
 		Button = React.createElement("TextButton", {
@@ -87,7 +88,7 @@ local function DropdownItem(props: DropdownItemProps)
 				Size = UDim2.new(1, if props.Icon then -props.Icon.Size.X - 4 else 0, 1, 0),
 				Font = Constants.DefaultFont,
 				TextSize = Constants.DefaultTextSize,
-				TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
+				TextColor3 = theme:GetColor(StyleGuide.Color.MainText, modifier),
 				TextXAlignment = Enum.TextXAlignment.Left,
 				TextTruncate = Enum.TextTruncate.AtEnd,
 				Text = props.Text,

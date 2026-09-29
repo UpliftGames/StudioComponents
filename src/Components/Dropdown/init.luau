@@ -81,6 +81,7 @@ local ScrollFrame = require("../ScrollFrame")
 local ClearButton = require("./ClearButton")
 local DropdownItem = require("./DropdownItem")
 local DropdownTypes = require("./Types")
+local StyleGuide = require("../../StyleGuide")
 
 local LEFT_TEXT_PAD = 5
 local ARROW_WIDTH = 17
@@ -186,16 +187,16 @@ local function Dropdown(props: DropdownProps)
 		end
 	end, { props.Disabled, opened })
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	elseif hovered then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StyleGuide.Modifier.Hover
 	end
 
-	local backgroundStyle = Enum.StudioStyleGuideColor.MainBackground
+	local backgroundStyle = StyleGuide.Color.MainBackground
 	if (hovered or opened) and not props.Disabled then
-		backgroundStyle = Enum.StudioStyleGuideColor.InputFieldBackground
+		backgroundStyle = StyleGuide.Color.InputFieldBackground
 	end
 
 	local rowHeight = props.RowHeight or Constants.DefaultDropdownRowHeight
@@ -279,7 +280,7 @@ local function Dropdown(props: DropdownProps)
 				Size = buttonSizeBinding:map(function(size: Vector2)
 					return UDim2.fromOffset(math.round(size.X), listHeight)
 				end),
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+				BorderColor3 = theme:GetColor(StyleGuide.Color.Border),
 			}, {
 				Scroller = React.createElement(ScrollFrame, {
 					Size = UDim2.fromScale(1, 1),
@@ -319,7 +320,7 @@ local function Dropdown(props: DropdownProps)
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
 		BackgroundColor3 = theme:GetColor(backgroundStyle, modifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border, modifier),
 		[React.Event.InputBegan] = function(_, input: InputObject)
 			if input.UserInputType == Enum.UserInputType.MouseMovement then
 				setHovered(true)
@@ -349,7 +350,7 @@ local function Dropdown(props: DropdownProps)
 			TextTransparency = if props.SelectedItem then 0 else 0.4,
 			Font = Constants.DefaultFont,
 			TextSize = Constants.DefaultTextSize,
-			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
+			TextColor3 = theme:GetColor(StyleGuide.Color.MainText, modifier),
 			TextXAlignment = Enum.TextXAlignment.Left,
 			TextTruncate = Enum.TextTruncate.AtEnd,
 			BackgroundTransparency = 1,
@@ -376,7 +377,7 @@ local function Dropdown(props: DropdownProps)
 				Position = UDim2.fromScale(0.5, 0.5),
 				Size = UDim2.fromOffset(8, 4),
 				BackgroundTransparency = 1,
-				ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.TitlebarText, modifier),
+				ImageColor3 = theme:GetColor(StyleGuide.Color.TitlebarText, modifier),
 			}),
 		}),
 	})

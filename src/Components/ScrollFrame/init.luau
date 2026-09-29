@@ -47,6 +47,7 @@ local useTheme = require("../../Hooks/useTheme")
 
 local Constants = require("./Constants")
 local ScrollBar = require("./ScrollBar")
+local StyleGuide = require("../../StyleGuide")
 local Types = require("./Types")
 
 local SCROLL_WHEEL_SPEED = Constants.WheelScrollAmount
@@ -261,9 +262,9 @@ local function ScrollFrame(props: ScrollFrameProps)
 		scrollOffsetBinding,
 	}):map(getScrollData)
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	end
 
 	local layoutBase = table.clone(props.Layout or defaultLayout)
@@ -307,8 +308,8 @@ local function ScrollFrame(props: ScrollFrameProps)
 		AnchorPoint = props.AnchorPoint,
 		Position = props.Position,
 		Size = props.Size or UDim2.fromScale(1, 1),
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground, modifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground, modifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border, modifier),
 		[React.Event.InputBegan] = handleMainInput,
 		[React.Event.InputChanged] = handleMainInput,
 		[React.Change.AbsoluteSize] = function(rbx: Frame)
@@ -321,7 +322,7 @@ local function ScrollFrame(props: ScrollFrameProps)
 				ZIndex = 2,
 				Size = mainSize,
 				BorderSizePixel = 0,
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
+				BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground),
 				BackgroundTransparency = 0.25,
 			})
 			else nil,

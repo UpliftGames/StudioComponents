@@ -33,6 +33,7 @@ local BaseTextInput = require("./Foundation/BaseTextInput")
 local Slider = require("./Slider")
 
 local Constants = require("../Constants")
+local StyleGuide = require("../StyleGuide")
 local useFreshCallback = require("../Hooks/useFreshCallback")
 local useTheme = require("../Hooks/useTheme")
 
@@ -110,13 +111,13 @@ local function NumericInputArrow(props: {
 
 	local hovered, setHovered = React.useState(false)
 	local pressed, setPressed = React.useState(false)
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	elseif pressed then
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		modifier = StyleGuide.Modifier.Pressed
 	elseif hovered then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StyleGuide.Modifier.Hover
 	end
 
 	local maybeActivate = useFreshCallback(function()
@@ -161,7 +162,7 @@ local function NumericInputArrow(props: {
 		AutoButtonColor = false,
 		BorderSizePixel = 0,
 		Text = "",
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Button, modifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.Button, modifier),
 		Size = props.HeightBinding:map(function(height: number)
 			if props.Side == 0 then
 				return UDim2.new(1, 0, 0, math.floor(height / 2))
@@ -200,7 +201,7 @@ local function NumericInputArrow(props: {
 		Image = React.createElement("ImageLabel", {
 			Image = "rbxassetid://14699332993",
 			Size = UDim2.fromOffset(7, 4),
-			ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ButtonText, modifier),
+			ImageColor3 = theme:GetColor(StyleGuide.Color.ButtonText, modifier),
 			BackgroundTransparency = 1,
 			AnchorPoint = Vector2.new(0.5, 0.5),
 			Position = UDim2.fromScale(0.5, 0.5),
@@ -243,9 +244,9 @@ local function NumericInput(props: NumericInputProps)
 		end
 	end
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	end
 
 	return React.createElement("Frame", {
@@ -297,7 +298,7 @@ local function NumericInput(props: NumericInputProps)
 			}),
 			Arrows = props.Arrows and React.createElement("Frame", {
 				BorderSizePixel = 0,
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Button, modifier),
+				BackgroundColor3 = theme:GetColor(StyleGuide.Color.Button, modifier),
 				AnchorPoint = Vector2.new(1, 0),
 				Position = UDim2.new(1, -1, 0, 1),
 				Size = UDim2.new(0, ARROW_WIDTH, 1, -2),

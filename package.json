@@ -1,6 +1,6 @@
 {
     "name": "@upliftgames/studiocomponents-fork",
-    "version": "1.2.0-uplift.1",
+    "version": "1.2.0-uplift.2",
     "description": "React components for building Roblox Studio plugins",
     "license": "MIT",
     "author": "sircfenner <sircfenner@users.noreply.github.com>",

@@ -45,6 +45,7 @@ local React = require("@pkg/@jsdotlua/react")
 
 local CommonProps = require("../CommonProps")
 
+local StyleGuide = require("../StyleGuide")
 local useMouseDrag = require("../Hooks/useMouseDrag")
 local useMouseIcon = require("../Hooks/useMouseIcon")
 local useTheme = require("../Hooks/useTheme")
@@ -164,9 +165,9 @@ local function Splitter(props: SplitterProps)
 	alpha = math.min(alpha, props.MaxAlpha or DEFAULT_MAX_ALPHA)
 
 	local handleTransparency = if props.Disabled then 0.75 else 0
-	local handleColorStyle = Enum.StudioStyleGuideColor.DialogButton
+	local handleColorStyle = StyleGuide.Color.DialogButton
 	if props.Disabled then
-		handleColorStyle = Enum.StudioStyleGuideColor.Border
+		handleColorStyle = StyleGuide.Color.Border
 	end
 
 	return React.createElement("Frame", {
@@ -192,13 +193,13 @@ local function Splitter(props: SplitterProps)
 		}, {
 			LeftBorder = not props.Disabled and React.createElement("Frame", {
 				Size = flipUDim2(UDim2.new(0, 1, 1, 0), shouldFlip),
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+				BackgroundColor3 = theme:GetColor(StyleGuide.Color.Border),
 				BorderSizePixel = 0,
 			}),
 			RightBorder = not props.Disabled and React.createElement("Frame", {
 				Position = flipUDim2(UDim2.new(1, -1, 0, 0), shouldFlip),
 				Size = flipUDim2(UDim2.new(0, 1, 1, 0), shouldFlip),
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+				BackgroundColor3 = theme:GetColor(StyleGuide.Color.Border),
 				BorderSizePixel = 0,
 			}),
 		}),

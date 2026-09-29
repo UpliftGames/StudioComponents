@@ -24,6 +24,7 @@ local RunService = game:GetService("RunService")
 local React = require("@pkg/@jsdotlua/react")
 
 local CommonProps = require("../CommonProps")
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 --[=[
@@ -46,8 +47,8 @@ local function Dot(props: {
 	return React.createElement("Frame", {
 		LayoutOrder = props.LayoutOrder,
 		Size = UDim2.fromOffset(10, 10),
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ButtonText),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ButtonBorder),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.ButtonText),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.ButtonBorder),
 		BackgroundTransparency = if props.Disabled then 0.75 else props.Transparency,
 	})
 end

@@ -46,6 +46,7 @@ local React = require("@pkg/@jsdotlua/react")
 
 local CommonProps = require("../CommonProps")
 local Constants = require("../Constants")
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 --[=[
@@ -82,9 +83,9 @@ local function ProgressBar(props: ProgressBarProps)
 	local alpha = value / max
 	local text = formatter(value, max)
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	end
 
 	return React.createElement("Frame", {
@@ -93,11 +94,11 @@ local function ProgressBar(props: ProgressBarProps)
 		Size = props.Size or UDim2.new(1, 0, 0, Constants.DefaultProgressBarHeight),
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBackground, modifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBorder, modifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.InputFieldBackground, modifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.InputFieldBorder, modifier),
 	}, {
 		Bar = React.createElement("Frame", {
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.DialogMainButton, modifier),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.DialogMainButton, modifier),
 			BorderSizePixel = 0,
 			Size = UDim2.fromScale(alpha, 1),
 			ClipsDescendants = true,
@@ -118,7 +119,7 @@ local function ProgressBar(props: ProgressBarProps)
 			Size = UDim2.fromScale(1, 1) - UDim2.fromOffset(0, 1),
 			Font = Constants.DefaultFont,
 			TextSize = Constants.DefaultTextSize,
-			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
+			TextColor3 = theme:GetColor(StyleGuide.Color.MainText, modifier),
 			Text = text,
 			ZIndex = 0,
 		}),

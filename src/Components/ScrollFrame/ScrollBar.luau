@@ -5,6 +5,7 @@ local useTheme = require("../../Hooks/useTheme")
 
 local Constants = require("./Constants")
 local ScrollBarArrow = require("./ScrollBarArrow")
+local StyleGuide = require("../../StyleGuide")
 local Types = require("./Types")
 
 local SCROLLBAR_THICKNESS = Constants.ScrollBarThickness
@@ -87,16 +88,16 @@ local function ScrollBar(props: ScrollBarProps)
 		-- end
 	end, { props.Disabled, drag.isActive() })
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	elseif hovered or drag.isActive() then
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		modifier = StyleGuide.Modifier.Pressed
 	end
 
 	return React.createElement("Frame", {
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBarBackground),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.ScrollBarBackground),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border),
 		Visible = scrollDataBinding:map(function(data: ScrollData)
 			return if vertical then data.BarVisible.Y else data.BarVisible.X
 		end),
@@ -129,8 +130,8 @@ local function ScrollBar(props: ScrollBarProps)
 			Size = flipUDim2(UDim2.new(1, 0, 1, -(SCROLLBAR_THICKNESS + 1) * 2), not vertical),
 		}, {
 			Handle = React.createElement("Frame", {
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBar, modifier),
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+				BackgroundColor3 = theme:GetColor(StyleGuide.Color.ScrollBar, modifier),
+				BorderColor3 = theme:GetColor(StyleGuide.Color.Border, modifier),
 				Size = scrollDataBinding:map(function(data: ScrollData)
 					local size = if vertical then data.BarSize.Y else data.BarSize.X
 					return flipUDim2(UDim2.new(1, 0, 0, size), not vertical)

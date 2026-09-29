@@ -25,6 +25,7 @@
 local React = require("@pkg/@jsdotlua/react")
 
 local CommonProps = require("../CommonProps")
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 local shadowData = {
@@ -76,7 +77,7 @@ local function DropShadowFrame(props: DropShadowFrameProps)
 		shadow = React.createElement("Frame", {
 			Position = data.Position,
 			Size = data.Size,
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.DropShadow),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.DropShadow),
 			BackgroundTransparency = data.Transparency,
 			BorderSizePixel = 0,
 			ZIndex = 0,
@@ -98,8 +99,8 @@ local function DropShadowFrame(props: DropShadowFrameProps)
 		Shadow = not props.Disabled and shadow,
 		Content = React.createElement("Frame", {
 			Size = UDim2.fromScale(1, 1),
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
-			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground),
+			BorderColor3 = theme:GetColor(StyleGuide.Color.Border),
 			ZIndex = 1,
 		}, props.children),
 	})

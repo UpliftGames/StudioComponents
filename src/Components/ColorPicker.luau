@@ -35,6 +35,7 @@ local Constants = require("../Constants")
 local Label = require("./Label")
 local NumericInput = require("./NumericInput")
 
+local StyleGuide = require("../StyleGuide")
 local useMouseDrag = require("../Hooks/useMouseDrag")
 local useTheme = require("../Hooks/useTheme")
 
@@ -104,7 +105,7 @@ local function ValPicker(props: {
 		Size = UDim2.new(0, 14, 1, 0),
 		AnchorPoint = Vector2.new(1, 0),
 		Position = UDim2.new(1, -6, 0, 0),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border),
 		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 		BackgroundTransparency = if props.Disabled then 0.75 else 0,
 		[React.Event.InputBegan] = if not props.Disabled then drag.onInputBegan else nil,
@@ -121,13 +122,13 @@ local function ValPicker(props: {
 			Position = UDim2.new(1, 1, 1 - val, 0),
 			BackgroundTransparency = 1,
 			Image = "rbxassetid://7507468017",
-			ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.TitlebarText),
+			ImageColor3 = theme:GetColor(StyleGuide.Color.TitlebarText),
 			Visible = not props.Disabled,
 		}),
 		Cover = props.Disabled and React.createElement("Frame", {
 			Size = UDim2.fromScale(1, 1),
 			BorderSizePixel = 0,
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground),
 			BackgroundTransparency = 0.5,
 			ZIndex = 2,
 		}),
@@ -162,7 +163,7 @@ local function HueSatPicker(props: {
 		Size = UDim2.new(1, -30, 1, 0),
 		ClipsDescendants = true,
 		AutoButtonColor = false,
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border),
 		BackgroundTransparency = if props.Disabled then 0.75 else 0,
 		Active = false,
 		Text = "",
@@ -214,7 +215,7 @@ local function HueSatPicker(props: {
 		Cover = props.Disabled and React.createElement("Frame", {
 			Size = UDim2.fromScale(1, 1),
 			BorderSizePixel = 0,
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground),
 			BackgroundTransparency = 0.5,
 			ZIndex = 3,
 		}),
@@ -365,17 +366,17 @@ local function ColorPicker(props: ColorPickerProps)
 		Disabled = props.Disabled,
 	}
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	end
 
 	return React.createElement("Frame", {
 		AnchorPoint = props.AnchorPoint,
 		Position = props.Position,
 		Size = props.Size or Constants.DefaultColorPickerSize,
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground, modifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground, modifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border, modifier),
 		BorderMode = Enum.BorderMode.Inset,
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
@@ -403,7 +404,7 @@ local function ColorPicker(props: ColorPickerProps)
 				Size = UDim2.new(0, SPLIT_X, 1, 0),
 				BackgroundTransparency = if props.Disabled then 0.75 else 0,
 				BackgroundColor3 = props.Color,
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+				BorderColor3 = theme:GetColor(StyleGuide.Color.Border),
 			}),
 			Controls = React.createElement(ColorControls, {
 				HSV = hsv,

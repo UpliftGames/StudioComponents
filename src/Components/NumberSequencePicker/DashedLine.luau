@@ -1,5 +1,6 @@
 local React = require("@pkg/@jsdotlua/react")
 
+local StyleGuide = require("../../StyleGuide")
 local useTheme = require("../../Hooks/useTheme")
 
 local TEX_HORIZONTAL = "rbxassetid://15431624045"
@@ -30,7 +31,7 @@ local function DashedLine(props: {
 		ScaleType = Enum.ScaleType.Tile,
 		TileSize = if horizontal then UDim2.fromOffset(4, 1) else UDim2.fromOffset(1, 4),
 		BackgroundTransparency = 1,
-		ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.DimmedText),
+		ImageColor3 = theme:GetColor(StyleGuide.Color.DimmedText),
 		ImageTransparency = transparency,
 		ZIndex = 0,
 	})

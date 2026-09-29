@@ -47,6 +47,7 @@
 local React = require("@pkg/@jsdotlua/react")
 
 local BaseLabelledToggle = require("./Foundation/BaseLabelledToggle")
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 local INDICATOR_IMAGE = "rbxassetid://14890059620"
@@ -73,30 +74,30 @@ local function Checkbox(props: CheckboxProps)
 	local mergedProps = table.clone(props) :: BaseLabelledToggle.BaseLabelledToggleProps
 
 	function mergedProps.RenderButton(subProps: { Hovered: boolean })
-		local mainModifier = Enum.StudioStyleGuideModifier.Default
+		local mainModifier = StyleGuide.Modifier.Default
 		if props.Disabled then
-			mainModifier = Enum.StudioStyleGuideModifier.Disabled
+			mainModifier = StyleGuide.Modifier.Disabled
 		elseif subProps.Hovered then
-			mainModifier = Enum.StudioStyleGuideModifier.Hover
+			mainModifier = StyleGuide.Modifier.Hover
 		end
 
-		local backModifier = Enum.StudioStyleGuideModifier.Default
+		local backModifier = StyleGuide.Modifier.Default
 		if props.Disabled then
-			backModifier = Enum.StudioStyleGuideModifier.Disabled
+			backModifier = StyleGuide.Modifier.Disabled
 		elseif props.Value == true then
-			backModifier = Enum.StudioStyleGuideModifier.Selected
+			backModifier = StyleGuide.Modifier.Selected
 		elseif subProps.Hovered then
-			backModifier = Enum.StudioStyleGuideModifier.Hover
+			backModifier = StyleGuide.Modifier.Hover
 		end
 
 		local rectOffset = Vector2.new(0, 0)
 		if props.Value == nil then -- indeterminate
-			local background = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground)
+			local background = theme:GetColor(StyleGuide.Color.MainBackground)
 			local _, _, val = background:ToHSV()
 			rectOffset = if val < 0.5 then Vector2.new(14, 0) else Vector2.new(28, 0)
 		end
 
-		local indicatorColor = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldIndicator, mainModifier)
+		local indicatorColor = theme:GetColor(StyleGuide.Color.CheckedFieldIndicator, mainModifier)
 		local indicatorTransparency = 0
 		if props.Value == nil then
 			indicatorColor = Color3.fromRGB(255, 255, 255)
@@ -106,8 +107,8 @@ local function Checkbox(props: CheckboxProps)
 		end
 
 		return React.createElement("Frame", {
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldBackground, backModifier),
-			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldBorder, mainModifier),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.CheckedFieldBackground, backModifier),
+			BorderColor3 = theme:GetColor(StyleGuide.Color.CheckedFieldBorder, mainModifier),
 			BorderMode = Enum.BorderMode.Inset,
 			Size = UDim2.fromScale(1, 1),
 		}, {

@@ -32,6 +32,7 @@
 local React = require("@pkg/@jsdotlua/react")
 
 local BaseLabelledToggle = require("./Foundation/BaseLabelledToggle")
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 local PADDING = 1
@@ -59,15 +60,15 @@ local function RadioButton(props: RadioButtonProps)
 	local mergedProps = table.clone(props) :: BaseLabelledToggle.BaseLabelledToggleProps
 
 	function mergedProps.RenderButton(subProps: { Hovered: boolean })
-		local mainModifier = Enum.StudioStyleGuideModifier.Default
+		local mainModifier = StyleGuide.Modifier.Default
 		if props.Disabled then
-			mainModifier = Enum.StudioStyleGuideModifier.Disabled
+			mainModifier = StyleGuide.Modifier.Disabled
 		elseif subProps.Hovered then
-			mainModifier = Enum.StudioStyleGuideModifier.Hover
+			mainModifier = StyleGuide.Modifier.Hover
 		end
 
 		return React.createElement("Frame", {
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldBackground, mainModifier),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.CheckedFieldBackground, mainModifier),
 			BackgroundTransparency = 0,
 			Size = UDim2.new(1, -PADDING * 2, 1, -PADDING * 2),
 			Position = UDim2.fromOffset(1, PADDING),
@@ -76,14 +77,14 @@ local function RadioButton(props: RadioButtonProps)
 				CornerRadius = UDim.new(0.5, 0),
 			}),
 			Stroke = React.createElement("UIStroke", {
-				Color = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldBorder, mainModifier),
+				Color = theme:GetColor(StyleGuide.Color.CheckedFieldBorder, mainModifier),
 				Transparency = 0,
 			}),
 			Inner = if props.Value == true
 				then React.createElement("Frame", {
 					Size = UDim2.new(1, -INNER_PADDING * 2, 1, -INNER_PADDING * 2),
 					Position = UDim2.fromOffset(INNER_PADDING, INNER_PADDING),
-					BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.DialogMainButton, mainModifier),
+					BackgroundColor3 = theme:GetColor(StyleGuide.Color.DialogMainButton, mainModifier),
 					BackgroundTransparency = 0.25,
 				}, {
 					Corner = React.createElement("UICorner", {

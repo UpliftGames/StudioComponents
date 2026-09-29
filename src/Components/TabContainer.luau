@@ -77,6 +77,7 @@
 local React = require("@pkg/@jsdotlua/react")
 
 local CommonProps = require("../CommonProps")
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 local TAB_HEIGHT = 30
@@ -144,36 +145,36 @@ local function TabButton(props: {
 		end
 	end
 
-	local backgroundStyle = Enum.StudioStyleGuideColor.Button
+	local backgroundStyle = StyleGuide.Color.Button
 	if props.Selected then
-		backgroundStyle = Enum.StudioStyleGuideColor.MainBackground
+		backgroundStyle = StyleGuide.Color.MainBackground
 	elseif pressed and not props.Disabled then
-		backgroundStyle = Enum.StudioStyleGuideColor.ButtonBorder
+		backgroundStyle = StyleGuide.Color.ButtonBorder
 	end
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	elseif props.Selected then
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		modifier = StyleGuide.Modifier.Pressed
 	elseif hovered then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StyleGuide.Modifier.Hover
 	end
 
-	local indicatorModifier = Enum.StudioStyleGuideModifier.Default
+	local indicatorModifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		indicatorModifier = Enum.StudioStyleGuideModifier.Disabled
+		indicatorModifier = StyleGuide.Modifier.Disabled
 	end
 
 	return React.createElement("TextButton", {
 		AutoButtonColor = false,
 		BackgroundColor3 = theme:GetColor(backgroundStyle, modifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border, modifier),
 		LayoutOrder = props.LayoutOrder,
 		Size = props.Size,
 		Text = props.Text,
 		Font = Enum.Font.SourceSans,
-		TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
+		TextColor3 = theme:GetColor(StyleGuide.Color.MainText, modifier),
 		TextTruncate = Enum.TextTruncate.AtEnd,
 		TextSize = 14,
 		[React.Event.InputBegan] = onInputBegan,
@@ -185,7 +186,7 @@ local function TabButton(props: {
 		end,
 	}, {
 		Indicator = props.Selected and React.createElement("Frame", {
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.DialogMainButton, indicatorModifier),
+			BackgroundColor3 = theme:GetColor(StyleGuide.Color.DialogMainButton, indicatorModifier),
 			BorderSizePixel = 0,
 			Size = UDim2.new(1, 0, 0, 2),
 		}),
@@ -227,14 +228,14 @@ local function TabContainer(props: TabContainerProps)
 	local tab = children[props.SelectedTab]
 	local content = if tab then tab.Content else nil
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	end
 
 	return React.createElement("Frame", {
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground, modifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground, modifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border, modifier),
 		AnchorPoint = props.AnchorPoint,
 		Position = props.Position,
 		Size = props.Size or UDim2.fromScale(1, 1),

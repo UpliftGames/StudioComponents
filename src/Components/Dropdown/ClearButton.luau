@@ -1,5 +1,6 @@
 local React = require("@pkg/@jsdotlua/react")
 
+local StyleGuide = require("../../StyleGuide")
 local useTheme = require("../../Hooks/useTheme")
 
 type ClearButtonProps = {
@@ -39,7 +40,7 @@ local function ClearButton(props: ClearButtonProps)
 			Position = UDim2.fromScale(0.5, 0.5),
 			Size = UDim2.fromOffset(10, 10),
 			Image = "rbxassetid://16969027907",
-			ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.SubText),
+			ImageColor3 = theme:GetColor(StyleGuide.Color.SubText),
 			ImageTransparency = if hovered then 0 else 0.6,
 			BackgroundTransparency = 1,
 		}),

@@ -41,6 +41,7 @@ local DashedLine = require("./DashedLine")
 local FreeLine = require("./FreeLine")
 local LabelledNumericInput = require("./LabelledNumericInput")
 local SequenceNode = require("./SequenceNode")
+local StyleGuide = require("../../StyleGuide")
 
 local function clampVector2(v: Vector2, vmin: Vector2, vmax: Vector2)
 	return Vector2.new(math.clamp(v.X, vmin.X, vmax.X), math.clamp(v.Y, vmin.Y, vmax.Y))
@@ -194,7 +195,7 @@ local function NumberSequencePicker(props: NumberSequencePickerProps)
 		lines[`Line{i}`] = React.createElement(FreeLine, {
 			Pos0 = p0 * contentSize,
 			Pos1 = p1 * contentSize,
-			Color = theme:GetColor(Enum.StudioStyleGuideColor.DialogMainButton),
+			Color = theme:GetColor(StyleGuide.Color.DialogMainButton),
 			ZIndex = 1,
 			Disabled = props.Disabled,
 		})
@@ -313,7 +314,7 @@ local function NumberSequencePicker(props: NumberSequencePickerProps)
 		Size = props.Size or Constants.DefaultNumberSequencePickerSize,
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground),
 		BorderSizePixel = 0,
 	}, {
 		Padding = React.createElement("UIPadding", {

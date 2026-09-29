@@ -6,6 +6,7 @@ local useFreshCallback = require("../../Hooks/useFreshCallback")
 local useTheme = require("../../Hooks/useTheme")
 
 local Constants = require("./Constants")
+local StyleGuide = require("../../StyleGuide")
 local Types = require("./Types")
 
 local ARROW_IMAGE = "rbxassetid://6677623152"
@@ -44,11 +45,11 @@ local function ScrollBarArrow(props: ScrollBarArrowProps)
 	local pressed, setPressed = React.useState(false)
 	local hovered, setHovered = React.useState(false)
 
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	elseif pressed then
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		modifier = StyleGuide.Modifier.Pressed
 	end
 
 	local maybeScroll = useFreshCallback(function()
@@ -91,13 +92,13 @@ local function ScrollBarArrow(props: ScrollBarArrowProps)
 
 	local hostClass = "ImageLabel"
 	local hostProps = {
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBar, modifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.ScrollBar, modifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.Border, modifier),
 		Size = UDim2.fromOffset(SCROLLBAR_THICKNESS, SCROLLBAR_THICKNESS),
 		Image = ARROW_IMAGE,
 		ImageRectSize = Vector2.new(SCROLLBAR_THICKNESS, SCROLLBAR_THICKNESS),
 		ImageRectOffset = getArrowImageOffset(props.Orientation, props.Side),
-		ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.TitlebarText, modifier),
+		ImageColor3 = theme:GetColor(StyleGuide.Color.TitlebarText, modifier),
 		Position = props.Position,
 		AnchorPoint = props.AnchorPoint,
 	}

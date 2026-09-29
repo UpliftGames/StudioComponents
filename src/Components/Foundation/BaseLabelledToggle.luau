@@ -3,6 +3,7 @@ local React = require("@pkg/@jsdotlua/react")
 local CommonProps = require("../../CommonProps")
 local Constants = require("../../Constants")
 
+local StyleGuide = require("../../StyleGuide")
 local getTextSize = require("../../getTextSize")
 local useTheme = require("../../Hooks/useTheme")
 
@@ -25,11 +26,11 @@ local function BaseLabelledToggle(props: BaseLabelledToggleProps)
 	local theme = useTheme()
 	local hovered, setHovered = React.useState(false)
 
-	local mainModifier = Enum.StudioStyleGuideModifier.Default
+	local mainModifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		mainModifier = Enum.StudioStyleGuideModifier.Disabled
+		mainModifier = StyleGuide.Modifier.Disabled
 	elseif hovered then
-		mainModifier = Enum.StudioStyleGuideModifier.Hover
+		mainModifier = StyleGuide.Modifier.Hover
 	end
 
 	local contentAlignment = props.ContentAlignment or Enum.HorizontalAlignment.Left
@@ -98,7 +99,7 @@ local function BaseLabelledToggle(props: BaseLabelledToggleProps)
 			Text = props.Label,
 			Font = Constants.DefaultFont,
 			TextSize = Constants.DefaultTextSize,
-			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, mainModifier),
+			TextColor3 = theme:GetColor(StyleGuide.Color.MainText, mainModifier),
 			LayoutOrder = labelOrder,
 		}, {
 			Constraint = React.createElement("UISizeConstraint", {

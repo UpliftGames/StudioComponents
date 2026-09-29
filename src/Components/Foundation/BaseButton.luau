@@ -7,6 +7,7 @@ local getTextSize = require("../../getTextSize")
 local useTheme = require("../../Hooks/useTheme")
 
 local BaseIcon = require("./BaseIcon")
+local StyleGuide = require("../../StyleGuide")
 
 local PADDING_X = 8
 local PADDING_Y = 4
@@ -57,20 +58,20 @@ local function BaseButton(props: BaseButtonProps)
 
 	local hovered, setHovered = React.useState(false)
 	local pressed, setPressed = React.useState(false)
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	elseif props.Selected then
-		modifier = Enum.StudioStyleGuideModifier.Selected
+		modifier = StyleGuide.Modifier.Selected
 	elseif pressed and hovered then
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		modifier = StyleGuide.Modifier.Pressed
 	elseif hovered then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StyleGuide.Modifier.Hover
 	end
 
-	local backColorStyle = props.BackgroundColorStyle or Enum.StudioStyleGuideColor.Button
-	local borderColorStyle = props.BorderColorStyle or Enum.StudioStyleGuideColor.ButtonBorder
-	local textColorStyle = props.TextColorStyle or Enum.StudioStyleGuideColor.ButtonText
+	local backColorStyle = props.BackgroundColorStyle or StyleGuide.Color.Button
+	local borderColorStyle = props.BorderColorStyle or StyleGuide.Color.ButtonBorder
+	local textColorStyle = props.TextColorStyle or StyleGuide.Color.ButtonText
 
 	local backColor = theme:GetColor(backColorStyle, modifier)
 	local borderColor3 = theme:GetColor(borderColorStyle, modifier)

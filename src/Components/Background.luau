@@ -22,6 +22,7 @@
 local React = require("@pkg/@jsdotlua/react")
 
 local CommonProps = require("../CommonProps")
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 --[=[
@@ -40,7 +41,7 @@ type BackgroundProps = CommonProps.T & {
 local function Background(props: BackgroundProps)
 	local theme = useTheme()
 	return React.createElement("Frame", {
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.MainBackground),
 		BorderSizePixel = 0,
 		AnchorPoint = props.AnchorPoint,
 		Position = props.Position,

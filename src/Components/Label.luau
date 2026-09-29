@@ -22,7 +22,7 @@
 	local function MyComponent()
 		return React.createElement(StudioComponents.Label, {
 			Text = "Please enter at least 5 characters!",
-			TextColorStyle = Enum.StudioStyleGuideColor.ErrorText,
+			TextColorStyle = StyleGuide.Color.ErrorText,
 		})
 	end
 	```
@@ -42,6 +42,7 @@ local React = require("@pkg/@jsdotlua/react")
 
 local CommonProps = require("../CommonProps")
 local Constants = require("../Constants")
+local StyleGuide = require("../StyleGuide")
 local useTheme = require("../Hooks/useTheme")
 
 --[=[
@@ -79,12 +80,12 @@ type LabelProps = CommonProps.T & {
 
 local function Label(props: LabelProps)
 	local theme = useTheme()
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StyleGuide.Modifier.Disabled
 	end
 
-	local style = props.TextColorStyle or Enum.StudioStyleGuideColor.MainText
+	local style = props.TextColorStyle or StyleGuide.Color.MainText
 	local color = theme:GetColor(style, modifier)
 	if props.TextColor3 ~= nil then
 		color = props.TextColor3

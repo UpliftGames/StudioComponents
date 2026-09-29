@@ -52,6 +52,7 @@ local React = require("@pkg/@jsdotlua/react")
 local CommonProps = require("../CommonProps")
 local Constants = require("../Constants")
 
+local StyleGuide = require("../StyleGuide")
 local useFreshCallback = require("../Hooks/useFreshCallback")
 local useMouseDrag = require("../Hooks/useMouseDrag")
 local useTheme = require("../Hooks/useTheme")
@@ -122,20 +123,20 @@ local function Slider(props: SliderProps)
 	local drag = useMouseDrag(dragCallback, dragDeps, nil, dragEndedCallback)
 
 	local hovered, setHovered = React.useState(false)
-	local mainModifier = Enum.StudioStyleGuideModifier.Default
+	local mainModifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		mainModifier = Enum.StudioStyleGuideModifier.Disabled
+		mainModifier = StyleGuide.Modifier.Disabled
 	end
 
-	local handleModifier = Enum.StudioStyleGuideModifier.Default
+	local handleModifier = StyleGuide.Modifier.Default
 	if props.Disabled then
-		handleModifier = Enum.StudioStyleGuideModifier.Disabled
+		handleModifier = StyleGuide.Modifier.Disabled
 	elseif hovered or drag.isActive() then
-		handleModifier = Enum.StudioStyleGuideModifier.Hover
+		handleModifier = StyleGuide.Modifier.Hover
 	end
 
-	local handleFill = theme:GetColor(Enum.StudioStyleGuideColor.Button, handleModifier)
-	local handleBorder = theme:GetColor(Enum.StudioStyleGuideColor.Border, handleModifier)
+	local handleFill = theme:GetColor(StyleGuide.Color.Button, handleModifier)
+	local handleBorder = theme:GetColor(StyleGuide.Color.Border, handleModifier)
 
 	React.useEffect(function()
 		if props.Disabled and drag.isActive() then
@@ -179,8 +180,8 @@ local function Slider(props: SliderProps)
 		AnchorPoint = props.AnchorPoint,
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
-		BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBackground, mainModifier),
-		BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBorder, handleModifier),
+		BackgroundColor3 = theme:GetColor(StyleGuide.Color.InputFieldBackground, mainModifier),
+		BorderColor3 = theme:GetColor(StyleGuide.Color.InputFieldBorder, handleModifier),
 		BorderMode = Enum.BorderMode.Inset,
 		BorderSizePixel = if props.Border == false then 0 else 1,
 		BackgroundTransparency = if props.Background == false then 1 else 0,
@@ -197,8 +198,8 @@ local function Slider(props: SliderProps)
 			BackgroundTransparency = props.Disabled and 0.4 or 0,
 			BackgroundColor3 = theme:GetColor(
 				-- surprising values, but provides correct colors
-				Enum.StudioStyleGuideColor.TitlebarText,
-				Enum.StudioStyleGuideModifier.Disabled
+				StyleGuide.Color.TitlebarText,
+				StyleGuide.Modifier.Disabled
 			),
 		}),
 		HandleRegion = React.createElement("Frame", {
