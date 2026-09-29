@@ -20,7 +20,11 @@
 	```
 ]=]
 
-local Studio = settings().Studio
+-- settings() is plugin-security locked; in a running game this hook can only
+-- serve a theme provided through ThemeContext.
+local hasStudioAccess, Studio = pcall(function()
+	return settings().Studio
+end)
 
 local React = require("@pkg/@jsdotlua/react")
 
@@ -28,10 +32,10 @@ local ThemeContext = require("../Contexts/ThemeContext")
 
 local function useTheme()
 	local theme = React.useContext(ThemeContext)
-	local studioTheme, setStudioTheme = React.useState(Studio.Theme)
+	local studioTheme, setStudioTheme = React.useState(if hasStudioAccess then Studio.Theme else nil)
 
 	React.useEffect(function()
-		if theme then
+		if theme or not hasStudioAccess then
 			return
 		end
 		local connection = Studio.ThemeChanged:Connect(function()

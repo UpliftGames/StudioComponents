@@ -66,7 +66,7 @@ const main = async (
 
     tomlLines.push(
         `version = "${version}"`,
-        'registry = "https://github.com/UpliftGames/wally-index"',
+        'registry = "https://github.com/UpliftGames/wally-internal-index"',
         'realm = "shared"',
         `license = "${license}"`,
         "",
