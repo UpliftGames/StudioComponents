@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0-uplift.3
+
+-   `Label` accepts optional `AutomaticSize` and `TextSize` props
+
 ## 1.2.0-uplift.2
 
 -   Added `StyleGuide` (`StyleGuide.Color` / `StyleGuide.Modifier`), used in place of `Enum.StudioStyleGuideColor` / `Enum.StudioStyleGuideModifier`. Those enums don't exist outside Studio, so components previously threw on require in a live game

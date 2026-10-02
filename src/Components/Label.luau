@@ -34,8 +34,8 @@
 	This is useful for things like adding extra padding around the text using a nested UIPadding,
 	or adding a UIStroke / UIGradient.
 
-	Labels use [Constants.DefaultFont] for Font and [Constants.DefaultTextSize] for TextSize. This
-	cannot currently be overriden via props.
+	Labels use [Constants.DefaultFont] for Font. TextSize defaults to [Constants.DefaultTextSize] and
+	can be overriden with the `TextSize` prop. Font cannot currently be overriden via props.
 ]=]
 
 local React = require("@pkg/@jsdotlua/react")
@@ -60,6 +60,8 @@ local useTheme = require("../Hooks/useTheme")
 	@field TextColor3 Color3?
 	@field RichText boolean?
 	@field MaxVisibleGraphemes number?
+	@field AutomaticSize Enum.AutomaticSize?
+	@field TextSize number?
 	@field TextColorStyle Enum.StudioStyleGuideColor?
 	@field children React.ReactNode
 ]=]
@@ -74,6 +76,8 @@ type LabelProps = CommonProps.T & {
 	TextColor3: Color3?,
 	RichText: boolean?,
 	MaxVisibleGraphemes: number?,
+	AutomaticSize: Enum.AutomaticSize?,
+	TextSize: number?,
 	TextColorStyle: Enum.StudioStyleGuideColor?,
 	children: React.ReactNode,
 }
@@ -95,12 +99,13 @@ local function Label(props: LabelProps)
 		AnchorPoint = props.AnchorPoint,
 		Position = props.Position,
 		Size = props.Size or UDim2.fromScale(1, 1),
+		AutomaticSize = props.AutomaticSize,
 		LayoutOrder = props.LayoutOrder,
 		ZIndex = props.ZIndex,
 		Text = props.Text,
 		BackgroundTransparency = 1,
 		Font = Constants.DefaultFont,
-		TextSize = Constants.DefaultTextSize,
+		TextSize = props.TextSize or Constants.DefaultTextSize,
 		TextColor3 = color,
 		TextTransparency = props.TextTransparency,
 		TextXAlignment = props.TextXAlignment,
